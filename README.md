@@ -43,3 +43,15 @@ The project is structured as follows:
 - `README.md`: The README file for the project.
 - `tailwind.config.mjs`: Configuration file for Tailwind CSS.
 - `tsconfig.json`: Configuration file for TypeScript.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Acknowledgements
+
+- [Astro](https://astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+Heavily inspired by [Jack Whiting's Website](https://jackwhiting.co.uk). Thank you [Jack](https://github.com/jackabox)!
