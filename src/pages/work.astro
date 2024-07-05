@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Work | Aayush Shukla">
+  <div class="pt-10 mt-40 mb-40 lg:pt-30 lg:mt-30 lg:mb-40 sup:mb-40">
+    <div class="mod-container">
+      <p
+        class="mb-3 text-base font-semibold tracking-wide uppercase md:text-lg text-blue-600 lg:mb-5"
+      >
+        Showcase
+      </p>{" "}
+      <h1 class="w-full text-black h1 lg:max-w-4/5 sup:max-w-4/6">
+        Check out my projects.{" "}
+      </h1>
+    </div>
+    <div class="mod-container mt-40">
+      <div class="flex flex-wrap justify-between row">
+        <a
+          href="https://github.com/a2ys/chess-ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block w-full column lg:w-6/12 xl:w-5/12"
+        >
+          <div class="relative mb-10 thumbnail">
+            <figure class="relative z-10 overflow-hidden">
+              <img width="640" height="427" class="thumb" src="/chess.jpg" />
+            </figure>{" "}
+          </div>{" "}
+          <h2 class="mb-2 h2">Chess Engine and AI</h2>{" "}
+          <p>
+            With plain Python, I created a Chess Engine and an AI agent which
+            can play chess using the engine.
+          </p>{" "}
+          <p
+            class="mt-4 text-sm font-bold tracking-wider uppercase text-blue-600"
+          >
+            Visit GitHub
+          </p>
+        </a>
+        <a
+          href="https://github.com/a2ys/website"
+          target="_blank"
+          class="block w-full column lg:w-6/12 xl:w-5/12 mt-32 lg:mt-0"
+        >
+          <div class="relative mb-10 thumbnail">
+            <figure class="relative z-10 overflow-hidden">
+              <img width="640" height="360" class="thumb" src="/website.png" />
+            </figure>{" "}
+          </div>{" "}
+          <h2 class="mb-2 h2">Portfolio Website</h2>{" "}
+          <p>
+            My portfolio website created in React with TypeScript and Tailwind
+            UI.
+          </p>{" "}
+          <p
+            class="mt-4 text-sm font-bold tracking-wider uppercase text-blue-600"
+          >
+            Visit GitHub
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  figure {
+    transition: transform 0.1s ease-in-out;
+  }
+
+  figure:hover {
+    transform: scale(1.03);
+  }
+</style>

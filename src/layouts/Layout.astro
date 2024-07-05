@@ -1,0 +1,339 @@
+---
+import Header from "../components/Header";
+import Footer from "../components/Footer.astro";
+import "@fontsource-variable/inter";
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Base Meta Tags -->
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Author Information -->
+    <meta name="author" content="Aayush Shukla" />
+    <meta
+      name="description"
+      content="Aayush Shukla's portfolio website. Open-source developer."
+    />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Aayush Shukla - Portfolio" />
+    <meta property="og:description" content="Open-source developer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://a2ys.dev/og-image.png" />
+    <meta property="og:url" content="https://a2ys.dev" />
+    <meta property="og:site_name" content="Aayush Shukla - Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@unreal_sapien" />
+    <meta name="twitter:title" content="Aayush Shukla - Portfolio" />
+    <meta name="twitter:description" content="Open-source developer" />
+    <meta name="twitter:image" content="https://a2ys.dev/og-image.png" />
+
+    <!-- Other Meta Tags -->
+    <meta
+      name="keywords"
+      content="Aayush Shukla, a2ys, React, Website, a2ys dev, a2ys developer, open source, developer, portfolio, a2ys.dev, a2ys developer, a2ys portfolio, a2ys website, a2ys blog, a2ys projects, a2ys work, a2ys contact, a2ys about, a2ys home, a2ys resume, a2ys cv, a2ys aayush shukla, a2ys aayush, a2ys shukla, a2ys aayush shukla developer, a2ys aayush shukla portfolio, a2ys aayush shukla website, a2ys aayush shukla blog, a2ys aayush shukla projects, a2ys aayush shukla work, a2ys aayush shukla contact, a2ys aayush shukla about, a2ys aayush shukla home, a2ys aayush shukla resume, a2ys aayush shukla cv"
+    />
+
+    <title>{title}</title>
+    <SpeedInsights />
+  </head>
+  <body>
+    <Header client:only />
+    <slot />
+    <Footer />
+    <style is:global>
+      :root {
+        font-family: "Inter Variable", sans-serif;
+        cursor: url("/cursor.svg"), auto;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      *,
+      :after,
+      :before {
+        box-sizing: border-box;
+        border: 0 solid;
+      }
+
+      button,
+      a {
+        cursor: url("/pointer.svg"), auto;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        --text-opacity: 1;
+        color: #000;
+        color: rgba(0, 0, 0, var(--text-opacity));
+      }
+
+      .h1 {
+        font-size: 3rem;
+        line-height: 1.1em;
+        font-weight: 700;
+      }
+
+      @media (min-width: 560px) {
+        .h1 {
+          font-size: 4rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .h1 {
+          font-size: 5rem;
+        }
+      }
+
+      .h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.3em;
+      }
+
+      @media (min-width: 560px) {
+        .h2 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .h2 {
+          font-size: 2.5rem;
+        }
+      }
+
+      .h3 {
+        font-size: 1.25rem;
+        line-height: 1.3em;
+        font-weight: 600;
+      }
+
+      @media (min-width: 560px) {
+        .h3 {
+          font-size: 1.5rem;
+        }
+      }
+
+      .h4 {
+        font-size: 1.15rem;
+        font-weight: 500;
+      }
+
+      @media (min-width: 560px) {
+        .h4 {
+          font-size: 1.25rem;
+        }
+      }
+
+      .h5 {
+        font-size: 1.15rem;
+        font-weight: 500;
+      }
+
+      li,
+      p {
+        font-size: 1rem;
+        line-height: 1.6em;
+      }
+
+      @media (min-width: 560px) {
+        li,
+        p {
+          font-size: 1.125rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        li,
+        p {
+          font-size: 1.175rem;
+        }
+      }
+
+      .inner {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto;
+        display: block;
+      }
+
+      .mod-container {
+        width: 100%;
+        max-width: 1340px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .row {
+        margin-left: -1.25rem;
+        margin-right: -1.25rem;
+      }
+
+      .column {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .header-title {
+        font-weight: 700;
+      }
+
+      .big-email {
+        font-size: 1.6rem;
+        line-height: 2.3rem;
+        font-weight: 700;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .sidebar {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      @media (min-width: 560px) {
+        .big-email {
+          font-size: 2.3rem;
+          line-height: 3rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .big-email {
+          font-size: 3rem;
+          line-height: 3.5rem;
+        }
+
+        main .sidebar {
+          padding-top: 7.5rem;
+        }
+      }
+
+      .anchor-link {
+        text-decoration: none;
+        text-decoration-color: transparent;
+        text-underline-offset: 3px;
+        transition:
+          text-decoration-color 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+          text-underline-offset 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      }
+
+      .anchor-link:hover {
+        text-decoration: underline;
+        text-decoration-color: rgb(147 197 253 / var(--tw-text-opacity));
+        text-underline-offset: 3px;
+      }
+
+      .close-link {
+        position: absolute;
+        top: 1.3rem;
+        right: 1.5rem;
+      }
+
+      .menu {
+        height: 100vh;
+      }
+
+      @supports (-webkit-touch-callout: none) {
+        .menu {
+          height: -webkit-fill-available;
+        }
+      }
+
+      .feather {
+        width: 24px;
+        height: 24px;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+      }
+
+      .thumb {
+        border: 0.25rem solid #000;
+        border-radius: 0.5rem;
+      }
+
+      h2 .wave {
+        transition: all 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        opacity: 0;
+      }
+
+      h2:hover .wave {
+        opacity: 1;
+      }
+
+      .phone-socials {
+        display: none;
+      }
+
+      @media (max-width: 1024px) {
+        .phone-socials {
+          display: block;
+        }
+      }
+
+      .header-link {
+        text-decoration: none;
+        text-decoration-color: transparent;
+        text-underline-offset: 0.2rem;
+        transition:
+          text-decoration-color 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+          text-underline-offset 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      }
+
+      .header-link:hover {
+        text-decoration: underline;
+        text-decoration-color: rgb(0 0 0);
+        text-decoration-thickness: 0.2rem;
+        text-underline-offset: 0.2rem;
+      }
+
+      .header-link-active {
+        text-decoration: underline;
+        text-decoration-color: rgb(0 0 0);
+        text-decoration-thickness: 0.2rem;
+        text-underline-offset: 0.2rem;
+      }
+    </style>
+    <script src="../../node_modules/feather-icons/dist/feather.js"></script>
+  </body>
+</html>
