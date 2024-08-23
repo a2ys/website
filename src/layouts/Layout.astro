@@ -61,8 +61,72 @@ const { title } = Astro.props;
     <slot />
     <Footer />
     <style is:global>
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-Thin.ttf') format('ttf');
+        font-weight: thin;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-Light.ttf') format('ttf');
+        font-weight: light;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-Regular.ttf') format('ttf');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-Medium.ttf') format('ttf');
+        font-weight: medium;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-SemiBold.ttf') format('ttf');
+        font-weight: semibold;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-Bold.ttf') format('ttf');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-ExtraBold.ttf') format('ttf');
+        font-weight: extrabold;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Cygre';
+        src: url('/fonts/Cygre-Black.ttf') format('ttf');
+        font-weight: black;
+        font-style: normal;
+        font-display: swap;
+      }
+
       :root {
-        font-family: "Inter Variable", sans-serif;
+        font-family: "Cygre", sans-serif;
         cursor: url("/cursor.svg"), auto;
       }
 
