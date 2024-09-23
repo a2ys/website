@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,7 +8,7 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-40 flex justify-between p-4 bg-white lg:bg-transparent">
+    <div className="max-[1024px]:fixed max-[1024px]:top-0 max-[1024px]:right-0 max-[1024px]:left-0 flex justify-between p-4 bg-white lg:bg-transparent">
       <a
         href="/"
         className="text-xl font-bold tracking-wide text-black uppercase title"
