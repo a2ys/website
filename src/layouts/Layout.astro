@@ -93,8 +93,16 @@ const { title } = Astro.props;
         font-display: swap;
       }
 
+      @font-face {
+        font-family: 'Violet Sans';
+        src: url('/fonts/VioletSans-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
       :root {
-        font-family: "Cygre", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: "Violet Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-weight: 400;
         cursor: url("/cursor.svg"), auto;
       }
