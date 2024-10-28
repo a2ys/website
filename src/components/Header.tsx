@@ -8,7 +8,7 @@ const Header = () => {
   };
 
   return (
-    <div className="max-[1024px]:fixed max-[1024px]:top-0 max-[1024px]:right-0 max-[1024px]:left-0 flex justify-between p-4 bg-white lg:bg-transparent">
+    <div className="max-[1024px]:fixed max-[1024px]:top-0 max-[1024px]:right-0 max-[1024px]:left-0 flex justify-between p-4 bg-white lg:bg-transparent z-10">
       <a
         href="/"
         className="text-xl font-bold tracking-wide text-black uppercase title"
