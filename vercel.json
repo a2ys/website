@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/git",
-      "destination": "https://blog.a2ys.dev",
+      "destination": "https://blog.a2ys.dev/blog/git-and-github",
       "permanent": true
     }
   ]
