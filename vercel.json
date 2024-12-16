@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/git",
+      "destination": "https://blog.a2ys.dev",
+      "permanent": true
+    }
+  ]
+}

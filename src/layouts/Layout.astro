@@ -56,59 +56,74 @@ const { title } = Astro.props;
     <SpeedInsights />
     <ViewTransitions />
   </head>
-  <body>
+  <body class="flex flex-col">
     <Header client:only />
-    <slot />
+    <div class="flex-grow">
+      <slot />
+    </div>
     <Footer />
     <style is:global>
       @font-face {
-        font-family: 'Cygre';
-        src: url('/fonts/Cygre-Regular.ttf') format('truetype');
+        font-family: "Cygre";
+        src: url("/fonts/Cygre-Regular.ttf") format("truetype");
         font-weight: 400;
         font-style: normal;
         font-display: swap;
       }
 
       @font-face {
-        font-family: 'Cygre';
-        src: url('/fonts/Cygre-Medium.ttf') format('truetype');
+        font-family: "Cygre";
+        src: url("/fonts/Cygre-Medium.ttf") format("truetype");
         font-weight: 500;
         font-style: normal;
         font-display: swap;
       }
 
       @font-face {
-        font-family: 'Cygre';
-        src: url('/fonts/Cygre-SemiBold.ttf') format('truetype');
+        font-family: "Cygre";
+        src: url("/fonts/Cygre-SemiBold.ttf") format("truetype");
         font-weight: 600;
         font-style: normal;
         font-display: swap;
       }
 
       @font-face {
-        font-family: 'Cygre';
-        src: url('/fonts/Cygre-Bold.ttf') format('truetype');
+        font-family: "Cygre";
+        src: url("/fonts/Cygre-Bold.ttf") format("truetype");
         font-weight: 700;
         font-style: normal;
         font-display: swap;
       }
 
       @font-face {
-        font-family: 'Violet Sans';
-        src: url('/fonts/VioletSans-Regular.woff') format('woff');
+        font-family: "Violet Sans";
+        src: url("/fonts/VioletSans-Regular.woff") format("woff");
         font-weight: 400;
         font-style: normal;
         font-display: swap;
       }
 
       :root {
-        font-family: "Violet Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family:
+          "Violet Sans",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
         font-weight: 400;
         cursor: url("/cursor.svg"), auto;
       }
 
       body {
         margin: 0;
+        min-height: 100vh;
       }
 
       *,
