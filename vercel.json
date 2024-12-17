@@ -4,6 +4,11 @@
       "source": "/git",
       "destination": "https://blog.a2ys.dev/blog/git-and-github",
       "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "https://blog.a2ys.dev",
+      "permanent": true
     }
   ]
 }
