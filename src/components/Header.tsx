@@ -35,11 +35,35 @@ const Header = () => {
         </a>
         <a
           href="/about"
-          className={`header-link hidden min-[1024px]:inline-block text-l font-bold tracking-wider text-black uppercase ${
+          className={`header-link hidden min-[1024px]:inline-block text-l font-bold tracking-wider text-black uppercase pr-4 ${
             window.location.pathname === "/about" ? "header-link-active" : ""
           }`}
         >
           About
+        </a>
+        <a
+          href="https://blog.a2ys.dev"
+          className="header-link hidden min-[1024px]:inline-block text-l font-bold tracking-wider text-black uppercase"
+          target="_blank"
+        >
+          <span className="flex items-center">
+            Blog{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="feather feather-arrow-up-right"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </span>
         </a>
         <div className="relative flex items-center justify-center min-[1024px]:hidden">
           <button onClick={handleToggle} aria-label="Hamburger Menu Icon">
@@ -89,6 +113,13 @@ const Header = () => {
                 }`}
               >
                 About
+              </a>
+              <a
+                href="https://blog.a2ys.dev"
+                className="block text-xl text-center font-medium text-black"
+                target="_blank"
+              >
+                Blog
               </a>
             </div>
           </div>
