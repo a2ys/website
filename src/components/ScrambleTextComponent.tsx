@@ -50,7 +50,7 @@ const ScrambleTextComponent = ({
   const scrambledText = useScrambleText(text, duration);
 
   return (
-    <h1 className="text-4xl font-bold mb-4 text-foreground">{scrambledText}</h1>
+    <h1 className="text-4xl font-bold mb-4 inline-block">{scrambledText}</h1>
   );
 };
 
