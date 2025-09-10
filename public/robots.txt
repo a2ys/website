@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /og-image.png
+Sitemap: https://a2ys.dev/sitemap.xml

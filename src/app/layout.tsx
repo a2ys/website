@@ -1,6 +1,8 @@
 import { Anonymous_Pro } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const anonymousPro = Anonymous_Pro({
   weight: ["400", "700"],
@@ -21,6 +23,8 @@ export default function RootLayout({
             {children}
           </div>
         </div>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
