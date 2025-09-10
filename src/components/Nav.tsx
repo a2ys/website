@@ -12,6 +12,8 @@ const Nav = () => {
         window.location.href = "/blog";
       } else if (e.key === "p") {
         window.location.href = "/projects";
+      } else if (e.key === "s") {
+        window.open("https://blog.a2ys.dev", "_blank");
       }
     };
 
@@ -30,6 +32,12 @@ const Nav = () => {
         </Link>
         <Link href="/projects" className="hover:text-primary transition-colors">
           [p] projects
+        </Link>
+        <Link
+          href="https://blog.a2ys.dev"
+          className="hover:text-primary transition-colors"
+        >
+          [s] SAVANT
         </Link>
       </div>
     </nav>
