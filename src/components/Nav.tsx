@@ -20,27 +20,19 @@ const Nav = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8">
-      <nav className="mb-12">
-        <div className="flex gap-4 text-sm text-muted-foreground">
-          <Link
-            href="/"
-            className="text-foreground hover:text-primary transition-colors"
-          >
-            [h] home
-          </Link>
-          <Link href="/blog" className="hover:text-primary transition-colors">
-            [b] blog
-          </Link>
-          <Link
-            href="/projects"
-            className="hover:text-primary transition-colors"
-          >
-            [p] projects
-          </Link>
-        </div>
-      </nav>
-    </div>
+    <nav className="max-w-4xl mx-auto mt-4 mb-12">
+      <div className="flex gap-4 text-muted-foreground">
+        <Link href="/" className="hover:text-primary transition-colors">
+          [h] home
+        </Link>
+        <Link href="/blog" className="hover:text-primary transition-colors">
+          [b] blog
+        </Link>
+        <Link href="/projects" className="hover:text-primary transition-colors">
+          [p] projects
+        </Link>
+      </div>
+    </nav>
   );
 };
 
