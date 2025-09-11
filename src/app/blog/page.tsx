@@ -1,10 +1,10 @@
 import ScrambleTextComponent from "@/components/ScrambleTextComponent";
-import { getSortedPostsData } from "@/lib/posts";
+import { getPosts } from "@/lib/posts";
 import Link from "next/link";
 import React from "react";
 
 const page = () => {
-  const posts = getSortedPostsData();
+  const posts = getPosts();
 
   return (
     <main>

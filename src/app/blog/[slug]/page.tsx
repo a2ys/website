@@ -1,19 +1,33 @@
-import { getPostData } from "@/lib/posts";
+import { getPosts, getPostBySlug } from "@/lib/posts";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
-export default async function BlogPost({
+export async function generateStaticParams() {
+  const posts = getPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function PostPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostData(params.slug);
+  const { frontmatter, content } = await getPostBySlug(params.slug);
 
   return (
     <article className="prose dark:prose-invert">
-      <h1>{post.title}</h1>
-      <p className="text-sm text-muted-foreground">
-        {new Date(post.date).toLocaleDateString()}
+      <h1 className="text-4xl font-extrabold tracking-tight">
+        {frontmatter.title}
+      </h1>
+      <p className="text-gray-500 mt-2">
+        By {frontmatter.author} on{" "}
+        {new Date(frontmatter.date).toLocaleDateString()}
       </p>
-      <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+
+      <div className="mt-8">
+        <MDXRemote source={content} components={components} />
+      </div>
     </article>
   );
 }

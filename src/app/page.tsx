@@ -1,10 +1,10 @@
 import ScrambleTextComponent from "@/components/ScrambleTextComponent";
-import { getSortedPostsData } from "@/lib/posts";
+import { getPosts } from "@/lib/posts";
 import { ArrowUpRight, Briefcase, MapPin } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
-  const posts = getSortedPostsData().slice(0, 4);
+  const posts = getPosts().slice(0, 4);
 
   return (
     <main>
