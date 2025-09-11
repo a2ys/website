@@ -11,13 +11,13 @@ const page = () => {
       <header className="mb-12">
         <div className="text-4xl font-bold mb-4">
           <span className="text-accent inline-block">~</span>{" "}
-          <ScrambleTextComponent text="blogs" duration={1000} />
+          <ScrambleTextComponent text="blog" duration={1000} />
         </div>
 
         <p className="text-muted-foreground mb-8 text-lg">
           i love to share my thoughts and ideas through writing. although i have
-          a separate blog as a project, here i share my personal blogs on
-          various topics ranging from technology to life experiences.
+          a separate blog as a project, here i share my personal blog on various
+          topics ranging from technology to life experiences.
         </p>
       </header>
 

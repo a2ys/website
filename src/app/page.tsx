@@ -1,6 +1,6 @@
 import ScrambleTextComponent from "@/components/ScrambleTextComponent";
 import { getSortedPostsData } from "@/lib/posts";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Briefcase, MapPin } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -12,11 +12,11 @@ export default function Home() {
         <ScrambleTextComponent text="aayush shukla" duration={1000} />
         <div className="space-y-2 text-muted-foreground">
           <p className="flex items-center gap-2">
-            <span>📍</span>
+            <MapPin className="w-4 h-4" />
             <span>chennai, india</span>
           </p>
           <p className="flex items-center gap-2">
-            <span>💼</span>
+            <Briefcase className="w-4 h-4" />
             <span>building a stealth startup</span>
           </p>
         </div>
@@ -24,13 +24,13 @@ export default function Home() {
           a 20 y/o cs undergrad passionate about finding simple solutions to
           common problems. i love theoretical computer science, solving
           intuitive problems and exploring open source. i mostly share my
-          thoughts on my blogs and keep building stuff on the side.
+          thoughts on my blog and keep building stuff on the side.
         </p>
       </header>
 
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-6">
-          <span className="text-accent">~</span> blogs
+          <span className="text-accent">~</span> blog
         </h2>
 
         <div className="space-y-4 lowercase text-lg">
@@ -55,9 +55,10 @@ export default function Home() {
         <div className="mt-6">
           <Link
             href="/blog"
-            className="text-primary hover:text-accent transition-colors text-lg"
+            className="text-primary hover:text-accent transition-colors text-lg items-center flex gap-2"
           >
-            all posts <ArrowUpRight className="inline-block ml-1 mb-1" />
+            <span>all posts</span>
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
