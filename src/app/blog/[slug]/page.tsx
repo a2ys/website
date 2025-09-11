@@ -93,7 +93,9 @@ export const mdxComponents = {
     <del className="line-through" {...props} />
   ),
 
-  img: <img className="my-6 rounded-md" />,
+  img: (props: ComponentProps<"img">) => (
+    <img className="my-6 rounded-md" {...props} />
+  ),
 
   table: (props: ComponentProps<"table">) => (
     <div className="my-6 w-full overflow-y-auto">
