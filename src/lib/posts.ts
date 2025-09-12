@@ -16,7 +16,12 @@ export function getPosts() {
 
     return {
       slug,
-      ...(matterResult.data as { title: string; date: string; author: string }),
+      ...(matterResult.data as {
+        title: string;
+        date: string;
+        author: string;
+        summary: string;
+      }),
     };
   });
 
@@ -36,7 +41,12 @@ export async function getPostBySlug(slug: string) {
   const { data, content } = matter(fileContents);
 
   return {
-    frontmatter: data as { title: string; date: string; author: string },
+    frontmatter: data as {
+      title: string;
+      date: string;
+      author: string;
+      summary: string;
+    },
     content,
   };
 }

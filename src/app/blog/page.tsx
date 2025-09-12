@@ -1,7 +1,18 @@
 import ScrambleTextComponent from "@/components/ScrambleTextComponent";
 import { getPosts } from "@/lib/posts";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Blog | Aayush Shukla",
+  description: "A collection of blog posts I've written.",
+  openGraph: {
+    title: "Blog | Aayush Shukla",
+    description: "A collection of blog posts I've written.",
+    url: "https://a2ys.dev/blog",
+  },
+};
 
 const page = () => {
   const posts = getPosts();

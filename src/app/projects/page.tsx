@@ -1,6 +1,17 @@
 import { ProjectCard } from "@/components/ProjectCard";
 import ScrambleTextComponent from "@/components/ScrambleTextComponent";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "A collection of projects I've worked on.",
+  openGraph: {
+    title: "Projects | Aayush Shukla",
+    description: "A collection of projects I've worked on.",
+    url: "https://a2ys.dev/projects",
+  },
+};
 
 const projects = [
   {

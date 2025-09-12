@@ -2,6 +2,32 @@ import { getPosts, getPostBySlug } from "@/lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { ComponentProps } from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { frontmatter } = await getPostBySlug(params.slug);
+
+  return {
+    title: frontmatter.title,
+    description: frontmatter.summary,
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.summary,
+      url: `https://a2ys.dev/blog/${params.slug}`,
+      images: [`/blog/${params.slug}/opengraph-image`],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontmatter.title,
+      description: frontmatter.summary,
+      images: [`/blog/${params.slug}/opengraph-image`],
+    },
+  };
+}
 
 const CustomLink = (props: ComponentProps<"a">) => {
   const href = props.href;
@@ -131,8 +157,29 @@ export default async function PostPage({
 }) {
   const { frontmatter, content } = await getPostBySlug(params.slug);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: frontmatter.title,
+    datePublished: frontmatter.date,
+    dateModified: frontmatter.date,
+    author: [
+      {
+        "@type": "Person",
+        name: frontmatter.author,
+        url: "https://a2ys.dev/",
+      },
+    ],
+    description: frontmatter.title,
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <h1 className="text-6xl font-extrabold tracking-tight">
         {frontmatter.title}
       </h1>
