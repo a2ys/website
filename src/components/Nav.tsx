@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const Nav = () => {
+  const pathName = usePathname();
+
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === "h") {
@@ -22,20 +25,37 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="max-w-4xl mx-auto mt-4 mb-12">
-      <div className="flex gap-4 text-muted-foreground">
-        <Link href="/" className="hover:text-primary transition-colors">
+    <nav className="max-w-4xl mx-auto mb-12">
+      <div className="flex gap-4">
+        <Link
+          href="/"
+          className={`hover:text-primary transition-colors ${
+            pathName === "/" ? "text-primary" : "text-muted-foreground"
+          }`}
+        >
           [h] home
         </Link>
-        <Link href="/blog" className="hover:text-primary transition-colors">
+        <Link
+          href="/blog"
+          className={`hover:text-primary transition-colors ${
+            pathName.startsWith("/blog")
+              ? "text-primary"
+              : "text-muted-foreground"
+          }`}
+        >
           [b] blog
         </Link>
-        <Link href="/projects" className="hover:text-primary transition-colors">
+        <Link
+          href="/projects"
+          className={`hover:text-primary transition-colors ${
+            pathName === "/projects" ? "text-primary" : "text-muted-foreground"
+          }`}
+        >
           [p] projects
         </Link>
         <Link
           href="https://blog.a2ys.dev"
-          className="hover:text-primary transition-colors"
+          className="hover:text-primary transition-colors text-muted-foreground"
         >
           [s] SAVANT
         </Link>
