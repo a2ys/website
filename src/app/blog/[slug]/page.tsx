@@ -2,7 +2,6 @@ import { getPosts, getPostBySlug } from "@/lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { ComponentProps } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const CustomLink = (props: ComponentProps<"a">) => {
   const href = props.href;
@@ -134,15 +133,20 @@ export default async function PostPage({
 
   return (
     <article>
-      <h1 className="text-4xl font-extrabold tracking-tight">
+      <h1 className="text-6xl font-extrabold tracking-tight">
         {frontmatter.title}
       </h1>
       <p className="text-gray-500 mt-2">
-        By {frontmatter.author} on{" "}
-        {new Date(frontmatter.date).toLocaleDateString()}
+        {new Date(frontmatter.date).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
       </p>
 
-      <div className="mt-8">
+      <hr className="my-8 border-border" />
+
+      <div>
         <MDXRemote source={content} components={mdxComponents} />
       </div>
     </article>

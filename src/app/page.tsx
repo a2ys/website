@@ -23,7 +23,8 @@ export default function Home() {
         <p className="mt-6 text-foreground text-lg leading-relaxed max-w-3xl">
           a 20 y/o cs undergrad passionate about finding simple solutions to
           common problems. i love theoretical computer science, solving
-          intuitive problems and exploring open source. i mostly share my
+          intuitive problems and exploring open source. i am programming since
+          the age of 11 and this habit will not go any soon. i mostly share my
           thoughts on my blog and keep building stuff on the side.
         </p>
       </header>
@@ -58,6 +59,46 @@ export default function Home() {
             className="text-primary hover:text-accent transition-colors text-lg items-center flex gap-2"
           >
             <span>all posts</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="mb-16">
+        <h2 className="text-2xl font-bold mb-6">
+          <span className="text-accent">~</span> projects
+        </h2>
+
+        <div className="space-y-4 lowercase">
+          <Link
+            href="https://github.com/celeris-schnell"
+            className="flex flex-col items-start hover:text-primary transition-colors cursor-pointer"
+          >
+            <span className="text-xl">celeris</span>
+            <span className="text-muted-foreground">
+              offline mobile payment system for areas with limited internet
+              access.
+            </span>
+          </Link>
+          <Link
+            href="https://github.com/a2ys/java-engine"
+            className="flex flex-col items-start hover:text-primary transition-colors cursor-pointer"
+          >
+            <span className="text-xl">
+              bitboard chess engine and supervised ai
+            </span>
+            <span className="text-muted-foreground">
+              chess engine using bitboards for efficient move generation.
+            </span>
+          </Link>
+        </div>
+
+        <div className="mt-6">
+          <Link
+            href="/projects"
+            className="text-primary hover:text-accent transition-colors text-lg items-center flex gap-2"
+          >
+            <span>all projects</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
