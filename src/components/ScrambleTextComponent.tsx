@@ -9,7 +9,8 @@ type ScrambleTextComponentProps = {
 
 function useScrambleText(finalText: string, duration = 2000) {
   const [displayText, setDisplayText] = useState("");
-  const chars = "abcdefghijklmnopqrstuvwxyz";
+  const chars =
+    "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~\\ ";
 
   useEffect(() => {
     let frame = 0;
