@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getPostBySlug } from "@/lib/posts";
+import path from "path";
+import { readFileSync } from "fs";
 
 export const alt = "Blog Post";
 export const size = {
@@ -7,6 +9,22 @@ export const size = {
   height: 630,
 };
 export const contentType = "image/png";
+
+const fontRegularPath = path.join(
+  process.cwd(),
+  "public",
+  "fonts",
+  "AnonymousPro-Regular.ttf"
+);
+const fontBoldPath = path.join(
+  process.cwd(),
+  "public",
+  "fonts",
+  "AnonymousPro-Bold.ttf"
+);
+
+const fontRegularData = readFileSync(fontRegularPath);
+const fontBoldData = readFileSync(fontBoldPath);
 
 export default async function Image({ params }: { params: { slug: string } }) {
   const { frontmatter } = await getPostBySlug(params.slug);
@@ -19,33 +37,86 @@ export default async function Image({ params }: { params: { slug: string } }) {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "center",
+          position: "relative",
           backgroundColor: "#030712",
           color: "#f9fafb",
-          padding: "80px",
+          padding: "40px",
+          boxSizing: "border-box",
+          border: "10px solid #3a89b3",
+          fontFamily: "'Anonymous Pro'",
         }}
       >
-        <h1
-          style={{ fontSize: "60px", fontWeight: "bold", marginBottom: "20px" }}
-        >
-          {frontmatter.title}
-        </h1>
-        <p
+        <div
           style={{
-            position: "absolute",
-            bottom: "40px",
-            right: "80px",
-            fontSize: "24px",
-            color: "#9ca3af",
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+            padding: "0 40px",
           }}
         >
-          a2ys.dev
-        </p>
+          <h1
+            style={{
+              fontSize: "72px",
+              fontWeight: "bold",
+              lineHeight: "1.2",
+            }}
+          >
+            {frontmatter.title}
+          </h1>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            position: "absolute",
+            bottom: "40px",
+            left: "40px",
+            padding: "0 40px",
+            boxSizing: "border-box",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "32px",
+              color: "#9ca3af",
+              fontWeight: "bold",
+            }}
+          >
+            a2ys.dev
+          </p>
+          <p
+            style={{
+              fontSize: "32px",
+              color: "#9ca3af",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span style={{ marginRight: "20px", fontSize: "32px" }}>🚀</span>
+            thoughts and code
+          </p>
+        </div>
       </div>
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: "Anonymous Pro",
+          data: fontRegularData,
+          style: "normal",
+          weight: 400,
+        },
+        {
+          name: "Anonymous Pro",
+          data: fontBoldData,
+          style: "normal",
+          weight: 700,
+        },
+      ],
     }
   );
 }

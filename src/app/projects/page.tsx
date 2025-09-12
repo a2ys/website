@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Projects | Aayush Shukla",
   description: "A collection of projects I've worked on.",
   openGraph: {
     title: "Projects | Aayush Shukla",
