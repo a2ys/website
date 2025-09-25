@@ -32,10 +32,10 @@ const page = () => {
         </p>
       </header>
 
-      <div className="space-y-6 lowercase text-lg">
+      <div className="space-y-4 lowercase text-lg">
         {posts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`}>
-            <div className="flex justify-between items-center hover:text-primary transition-colors cursor-pointer py-2">
+            <div className="flex justify-between items-center hover:text-primary transition-colors cursor-pointer gap-2">
               <span>{post.title}</span>
               <span className="text-muted-foreground">
                 {new Date(post.date).toLocaleDateString("en-US", {

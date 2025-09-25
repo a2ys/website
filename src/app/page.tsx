@@ -46,7 +46,7 @@ export default function Home() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="flex justify-between items-center hover:text-primary transition-colors cursor-pointer"
+              className="flex justify-between items-center hover:text-primary transition-colors cursor-pointer gap-2"
             >
               <span>{post.title}</span>
               <span className="text-muted-foreground">

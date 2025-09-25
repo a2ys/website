@@ -26,14 +26,14 @@ const Nav = () => {
 
   return (
     <nav className="max-w-4xl mx-auto mb-12">
-      <div className="flex gap-4">
+      <div className="flex gap-8 min-[430px]:gap-4">
         <Link
           href="/"
           className={`hover:text-primary transition-colors ${
             pathName === "/" ? "text-primary" : "text-muted-foreground"
           }`}
         >
-          [h] home
+          <span className="hidden min-[430px]:inline">[h] </span>home
         </Link>
         <Link
           href="/blog"
@@ -43,7 +43,7 @@ const Nav = () => {
               : "text-muted-foreground"
           }`}
         >
-          [b] blog
+          <span className="hidden min-[430px]:inline">[b] </span>blog
         </Link>
         <Link
           href="/projects"
@@ -51,13 +51,13 @@ const Nav = () => {
             pathName === "/projects" ? "text-primary" : "text-muted-foreground"
           }`}
         >
-          [p] projects
+          <span className="hidden min-[430px]:inline">[p] </span>projects
         </Link>
         <Link
           href="https://blog.a2ys.dev"
           className="hover:text-primary transition-colors text-muted-foreground"
         >
-          [s] SAVANT
+          <span className="hidden min-[430px]:inline">[s] </span>SAVANT
         </Link>
       </div>
     </nav>
