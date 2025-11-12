@@ -1,197 +1,497 @@
-# -------------------- Experiment 2 --------------------
+# 1. Ford-Fulkerson
+# Finds the maximum flow from a source to a sink in a flow network using augmenting paths.
+def ford_fulkerson_bfs(graph, s, t, parent):
+    visited = [False] * len(graph)
+    queue = []
+    queue.append(s)
+    visited[s] = True
+    parent[s] = -1
 
-empid=c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
-age=c(30,37,45,32,50,60,35,32,34,43,32,30,43,50,60)
-gender=c(0,1,0,1,1,1,0,0,1,0,0,1,1,0,0)
-status=c(1,1,2,2,1,1,1,2,2,1,2,1,2,1,2)
-empinfo=data.frame(empid,age,gender,status)
-empinfo$gender=factor(empinfo$gender,labels=c("male","female"))
-empinfo$status=factor(empinfo$status,labels=c("staff","faculty"))
-male=subset(empinfo,empinfo$gender=="male")
-female=subset(empinfo, empinfo$gender=='female')
-summary(empinfo)
-summary(male)
-summary(female)
-summary(age)
-table1=table(empinfo$gender)
-table2=table(empinfo$status)
-table3=table(empinfo$gender, empinfo$status)
-plot(empinfo$age,type="l",main="Age of employees",xlab="empid",ylab="age in years",col="blue")
-pie(table1)
-barplot(table3,beside=T,xlim=c(1,15),ylim=c(0,5),col=c("blue", "red"))
-legend("topright",legend=rownames(table3),fill=c('blue','red'),bty="n")
-boxplot(empinfo$age~empinfo$status,col=c('red','blue'))
+    while queue:
+        u = queue.pop(0)
+        for v in range(len(graph)):
+            if not visited[v] and graph[u][v] > 0:
+                queue.append(v)
+                visited[v] = True
+                parent[v] = u
 
-# -------------------- Experiment 3 --------------------
+    return visited[t]
 
-# Problem 1
-data=cars
-summary(data)
-v1=var(data$speed)
-v2=var(data$dist)
-covariance=cov(data$speed,data$dist)
-corr=cor(data$speed,data$dist)
-cor.test(data$speed,data$dist)
-cor.test(data$speed,data$dist,method="pearson")
-cor.test(data$speed,data$dist,method="spearman")
-plot(data$speed,data$dist)
-regression1=lm(data$speed~data$dist)
-abline(regression1)
-summary(regression1)
-regression2=lm(data$dist~data$speed)
-abline(regression2)
-summary(regression2)
+def FordFulkerson(graph, source, sink):
+    n = len(graph)
+    residual_graph = [row[:] for row in graph]
+    parent = [0] * n
+    max_flow = 0
 
-# Problem 2
-weight=c(15,26,27,2,25.5,27,32,18,22,20,26,24)
-bmi=c(133.35,16.1,16.74,16,13.59,15.73,15.65,13.85,16.07,12.8,13.65,14.42)
-cor(weight,bmi)
-mode1<-lm(bmi~weight)
-summary(mode1)
+    while ford_fulkerson_bfs(residual_graph, source, sink, parent):
+        path_flow = float('Inf')
+        s = sink
+        while s != source:
+            path_flow = min(path_flow, residual_graph[parent[s]][s])
+            s = parent[s]
 
-# -------------------- Experiment 4 --------------------
+        max_flow += path_flow
 
-Y=c(110,80,70,120,150,90,70,120)
-X1=c(30,40,20,50,60,40,20,60)
-X2=c(11,10,7,15,19,12,8,14)
-RegModel=lm(Y~X1+X2)
-summary(RegModel)
-library(scatterplot3d)
-scatterplot3d(Y,X1,X2)
+        v = sink
+        while v != source:
+            u = parent[v]
+            residual_graph[u][v] -= path_flow
+            residual_graph[v][u] += path_flow
+            v = parent[v]
 
-data=mtcars
-X=mtcars$mpg
-Y=mtcars$disp
-Z=mtcars$hp
-RegModel<- lm(Z~X+Y)
-summary(RegModel)
-graph=scatterplot3d(X,Y,Z)
-graph$plane3d(RegModel)
+    return max_flow
 
-# -------------------- Experiment 5 --------------------
+ff_graph = [
+    [0, 16, 13, 0, 0, 0],
+    [0, 0, 10, 12, 0, 0],
+    [0, 4, 0, 0, 14, 0],
+    [0, 0, 9, 0, 0, 20],
+    [0, 0, 0, 7, 0, 4],
+    [0, 0, 0, 0, 0, 0]
+]
+print(f"Ford-Fulkerson Max Flow: {FordFulkerson(ff_graph, 0, 5)}")
 
-n=4
-p=0.02
-dbinom(2,n,p)
-sum(dbinom(2:4,n,p))
-1-pbinom(1,n,p)
-sum(dbinom(0:2,n,p))
-pbinom(2,n,p)
-x=0:n
-px=dbinom(x,n,p)
-Ex=weighted.mean(x,px)
-Varx=weighted.mean(x*x,px)-(weighted.mean(x,px))^2
-plot(x,px,type="h",xlab="values of x",ylab="Probability distribution of x",main="Binomial distribution")
 
-# -------------------- Experiment 6 --------------------
+# 2. Convex Hull
+# Finds the smallest convex polygon that encloses a set of 2D points using the Graham scan.
+def orientation(o, a, b):
+    value = (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
 
-m=20
-ps=0.02
-lambda=m*ps
-p1=sum(dpois(2:m,lambda))
-round(1000*p1)
-p2=dpois(2,lambda)
-round(1000*p2)
-p3=sum(dpois(0:2,lambda))
-round(1000*p3)
-x1=0:m
-px1=dpois(x1,lambda)
-plot(x1,px1,type="h",xlab="values of x",ylab="Probability distribution of x",main="Poisson distribution")
-Ex1=weighted.mean(x1,px1)
-Varx1=weighted.mean(x1*x1,px1)-(weighted.mean(x1,px1))^2
+    if value == 0:
+        return 0
 
-x=seq(0,40)
-y=dnorm(x,mean=20,sd=5)
-plot(x,y,type='l')
-p1=pnorm(15,mean=20,sd=5)
-x2=seq(0,15)
-y2=dnorm(x2,mean=20,sd=5)
-polygon(c(0,x2,15),c(0,y2,0),col='yellow')
-p2=pnorm(40,mean=20,sd=5)-pnorm(25,mean=20,sd=5)
-x1=seq(25,40)
-y1=dnorm(x1,mean=20,sd=5)
-polygon(c(25,x1,40),c(0,y1,0),col='red')
-p3=pnorm(25,mean=20,sd=5)-pnorm(15,mean=20,sd=5)
-x3=seq(15,25)
-y3=dnorm(x3,mean=20,sd=5)
-polygon(c(15,x3,25),c(0,y3,0),col='green')
-data.frame(p1,p2,p3)
+    return 1 if value > 0 else 2
 
-# -------------------- Experiment 7 --------------------
+def ConvexHull(points):
+    points = sorted(points, key=lambda p: (p[1], p[0]))
+    p0 = points[0]
 
-xbar=14.6
-mu0=15.4
-sigma=2.5
-n=35
-z=(xbar-mu0)/(sigma/sqrt(n))
-alpha=0.05
-zhalfalpha=qnorm(1-(alpha/2))
-pval=2*pnorm(z)
-if(pval>alpha){print("Accept Null hypothesis")} else{print("Reject Null hypothesis")}
+    import math
+    def angle(p):
+        return math.atan2(p[1] - p0[1], p[0] - p0[0])
 
-n=640
-Sprop=63/n
-Pprop=0.1726
-q=1-Pprop
-z=(Sprop-Pprop)/sqrt(Pprop*q/n)
-E=qnorm(.975)
-if(z>-E && z<E){print("Hospital is not efficient")} else{print("Hospital is efficient")}
+    points = sorted(points, key=angle)
 
-# -------------------- Experiment 8 --------------------
+    hull = []
+    for p in points:
+        while len(hull) >= 2 and orientation(hull[-2], hull[-1], p) != 1:
+            hull.pop()
+        hull.append(p)
 
-xbar=20
-ybar=15
-sigma=4
-n1=500
-n2=400
-z=(xbar-ybar)/(sigma*sqrt((1/n1)+(1/n2)))
-alpha=0.05
-zalpha=qnorm(1-(alpha/2))
-if(z<=zalpha){print("Accept Null hypothesis")} else{print("Reject Null hypothesis")}
+    return hull
 
-p1=0.20
-p2=0.185
-n1=900
-n2=1600
-P=(n1*p1+n2*p2)/(n1+n2)
-Q=1-P
-z=(p1-p2)/sqrt(P*Q*((1/n1)+(1/n2)))
-zalpha=qnorm(1-(alpha/2))
-if(z<=zalpha){print("Accept Null hypothesis")} else{print("Reject Null hypothesis")}
+pts = [(0,0),(1,1),(2,2),(2,0),(1,2),(0,2)]
+print(ConvexHull(pts))
 
-# -------------------- Experiment 9 --------------------
 
-sample1=c(19,17,15,21,16,18,16,14)
-sample2=c(15,14,15,19,15,18,16,20)
-t=t.test(sample1,sample2)
-cv=t$statistic
-tv=qt(0.975,14)
-if(cv <= tv){print("Accept Ho")} else{print("Reject Ho")}
+# 3. N-Queens
+# Solves the N-Queens problem using backtracking to find all placements of N queens on an N×N board.
+def isSafe(board, row, col, n):
+    for i in range(row):
+        if board[i][col] == 1:
+            return False
 
-test1=c(19,17,15,21,16,18,16,14,19,20)
-test2=c(15,14,15,19,15,18,16,20,22,19)
-t=t.test(test1,test2,paired=TRUE)
-alpha=0.05
-if(t$p.value >alpha){print("Accept Ho")} else{print("Reject Ho")}
+    i, j = row, col
+    while i >= 0 and j >= 0:
+        if board[i][j] == 1:
+            return False
+        i -= 1
+        j -= 1
 
-f=var.test(sample1,sample2)
-cv=f$statistic
-tv=qf(0.95,7,7)
-if(cv <= tv){print("Accept Ho")} else{print("Reject Ho")}
+    i, j = row, col
+    while i >= 0 and j < n:
+        if board[i][j] == 1:
+            return False
+        i -= 1
+        j += 1
 
-# -------------------- Experiment 10 --------------------
+    return True
 
-n=5
-alpha=0.05
-N=256
-P=0.5
-x=c(0:n)
-obf=c(5,35,75,84,45,12)
-exf=(dbinom(x,n,P)*256)
-chisq<-sum((obf-exf)^2/exf)
-tv=qchisq(1-alpha,n)
-if(chisq <= tv){print("Accept H0/Fit is good")} else{print("Reject H0/Fit is not good")}
+def solveNQueens(n):
+    board = [[0] * n for _ in range(n)]
 
-data<-matrix(c(69,51,81,20,35,44),ncol=2,byrow=T)
-cv=chisq.test(data)$p.value
-if(cv>alpha){print("Attributes are independent")} else{print("Attributes are not independent")}
+    def solve(row):
+        if row == n:
+            for r in board:
+                print(" ".join("Q" if x else "." for x in r))
+            print()
+            return
+        
+        for col in range(n):
+            if isSafe(board, row, col, n):
+                board[row][col] = 1
+                solve(row + 1)
+                board[row][col] = 0
+
+    solve(0)
+
+solveNQueens(4)
+
+
+# 4. Matrix Chain Multiplication (MCM)
+# Uses dynamic programming to find the most efficient way to multiply a chain of matrices.
+def MCM(p):
+    n = len(p) - 1
+    dp = [[0] * (n + 1) for _ in range(n + 1)]
+
+    for length in range(2, n + 1):
+        for i in range(1, n - length + 2):
+            j = i + length - 1
+            dp[i][j] = float("inf")
+
+            for k in range(i, j):
+                cost = dp[i][k] + dp[k + 1][j] + p[i - 1] * p[j] * p[k]
+                dp[i][j] = min(dp[i][j], cost)
+
+    return dp[1][n]
+
+p = [10, 30, 5, 60]
+print(MCM(p))
+
+
+# 5. KMP (Knuth-Morris-Pratt)
+# Implements the KMP algorithm for efficient string matching using a precomputed LPS table.
+def lps(pattern):
+    m = len(pattern)
+    lps = [0] * m
+    j = 0
+    i = 1
+
+    while i < m:
+        if pattern[i] == pattern[j]:
+            j += 1
+            lps[i] = j
+            i += 1
+        else:
+            if j != 0:
+                j = lps[j - 1]
+            else:
+                lps[i] == 0
+                i += 1
+
+    return lps
+
+def kmp(string, pattern):
+    n = len(string)
+    m = len(pattern)
+
+    lps_table = lps(pattern)
+
+    i, j = 0, 0
+
+    while i < n:
+        if string[i] == pattern[j]:
+            i += 1
+            j += 1
+
+        if j == m:
+            print("Pattern found at index: ", i - j)
+            j = lps_table[j - 1]
+        elif i < n and string[i] != pattern[j]:
+            if j != 0:
+                j = lps_table[j - 1]
+            else:
+                i += 1
+
+string = "ABABDABACDABABCABAB"
+pattern = "ABABC"
+
+kmp(string, pattern)
+
+
+# 6. Huffman Coding
+# Generates prefix-free codes for characters based on their frequency using a greedy approach.
+import heapq
+
+class Node:
+    def __init__(self, char, freq):
+        self.char = char
+        self.freq = freq
+        self.left = None
+        self.right = None
+
+    def __lt__(self, other):
+        return self.freq < other.freq
+
+def huffman(freq):
+    heap = []
+
+    for ch, fr in freq.items():
+        heapq.heappush(heap, Node(ch, fr))
+
+    while len(heap) > 1:
+        left = heapq.heappop(heap)
+        right = heapq.heappop(heap)
+
+        merged = Node(None, left.freq + right.freq)
+        merged.left = left
+        merged.right = right
+
+        heapq.heappush(heap, merged)
+
+    root = heap[0]
+    codes = dict()
+
+    def generate(node, code):
+        if node is None:
+            return
+
+        if node.char is not None:
+            codes[node.char] = code
+            return
+
+        generate(node.left, code + "0")
+        generate(node.right, code + "1")
+
+    generate(root, "")
+    return codes
+
+freq = {'a' : 5, 'b' : 9, 'c' : 12, 'd' : 13, 'e' : 16, 'f' : 45}
+codes = huffman(freq)
+
+for ch in codes:
+    print(ch, codes[ch])
+
+
+# 7. Bellman-Ford
+# Finds the shortest paths from a source vertex in a graph, handling negative edge weights.
+INF = float("inf")
+
+def BellmanFord(graph, V, source):
+    dist = [INF] * V
+    dist[source] = 0
+
+    for _ in range(V - 1):
+        for u, v, w in graph:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+
+    for u, v, w in graph:
+        if dist[u] != INF and dist[u] + w < dist[v]:
+            print("This graph contains a negative edge cycle")
+            return
+
+    return dist
+
+graph = [
+    (0, 1, -1),
+    (0, 2, 4),
+    (1, 2, 3),
+    (1, 3, 2),
+    (1, 4, 2),
+    (3, 2, 5),
+    (3, 1, 1),
+    (4, 3, -3)
+]
+
+print(BellmanFord(graph, 5, 0))
+
+
+# 8. Karatsuba
+# Implements the Karatsuba algorithm for fast multiplication using a divide and conquer approach.
+def karatsuba(num1, num2):
+   if num1 < 10 and num2 < 10:
+       return num1 * num2
+
+   n = max(len(str(num1)), len(str(num2)))
+   mid = n // 2
+
+   a = num1  // (10 ** mid)
+   b = num1 % (10 ** mid)
+   c = num2 // (10 ** mid)
+   d = num2 % (10 ** mid)
+
+   p1 = karatsuba(a, c)
+   p2 = karatsuba(b, d)
+   p3 = karatsuba(a + b, c + d)
+
+   middle = p3 - p1 - p2
+
+   return p1 * (10 ** (2 * mid)) + middle * (10 ** mid) + p2
+
+print(karatsuba(100, 12))
+
+
+# 9. Longest Common Subsequence (LCS)
+# Finds the longest subsequence common to two sequences using dynamic programming.
+def LCS(X, Y):
+    n = len(X)
+    m = len(Y)
+
+    dp = [[0] * (m + 1) for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if X[i - 1] == Y[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])
+
+    i, j = n, m
+    seq = []
+    while i > 0 and j > 0:
+        if X[i - 1] == Y[j - 1]:
+            seq.append(X[i - 1])
+            i -= 1
+            j -= 1
+        else:
+            if dp[i - 1][j] > dp[i][j - 1]:
+                i -= 1
+            else:
+                j -= 1
+        
+    seq.reverse()
+    
+    return dp[n][m], ''.join(seq)
+
+X = "ABCBDAB"
+Y = "BDCABA"
+
+length, sequence = LCS(X, Y)
+print(length)
+print(sequence)
+
+
+# 10. Line Segment Intersection
+# Checks if two line segments intersect using orientation and collinearity checks.
+def orientation(o, a, b):
+    value = (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    
+    if value == 0:
+        return 0
+
+    return 1 if value > 0 else 2
+
+def on_segment(a, b, c):
+    on_x = min(a[0], c[0]) <= b[0] <= max(a[0], c[0])
+    on_y = min(a[1], c[1]) <= b[1] <= max(a[1], c[1])
+
+    return on_x and on_y
+
+def intersect(p1, q1, p2, q2):
+    o1 = orientation(p1, q1, p2)
+    o2 = orientation(p1, q1, q2)
+    o3 = orientation(p2, q2, p1)
+    o4 = orientation(p2, q2, q1)
+
+    if o1 != o2 and o3 != o4:
+        return True
+
+    if o1 == 0 and on_segment(p1, p2, q1): return True
+    if o2 == 0 and on_segment(p1, q2, q1): return True
+    if o3 == 0 and on_segment(p2, p1, q2): return True
+    if o4 == 0 and on_segment(p2, q1, q2): return True
+
+    return False
+
+print(intersect((1, 1), (10, 1), (1, 2), (10, 2)))
+print(intersect((10, 0), (0, 10), (0, 0), (10, 10)))
+print(intersect((0, 0), (10, 10), (5, 5), (15, 15)))
+print(intersect((0, 0), (5, 5), (6, 6), (10, 10)))
+
+
+# 11. Max Subarray Sum
+# Finds the maximum sum of a contiguous subarray using a divide and conquer approach.
+def max_crossing_sum(arr, left, right, mid):
+    s = 0
+    left_sum = float("-inf")
+    
+    for i in range(mid, left - 1, -1):
+        s += arr[i]
+        left_sum = max(left_sum, s)
+
+    s = 0
+    right_sum = float("-inf")
+
+    for i in range(mid + 1, right + 1):
+        s += arr[i]
+        right_sum = max(right_sum, s)
+
+    return left_sum + right_sum
+
+def max_subarray_sum(arr, left, right):
+    if left == right:
+        return arr[left]
+
+    mid = (left + right) // 2
+
+    left_sum = max_subarray_sum(arr, left, mid)
+    right_sum = max_subarray_sum(arr, mid + 1, right)
+    crossing_sum = max_crossing_sum(arr, left, right, mid)
+
+    return max(left_sum, right_sum, crossing_sum)
+
+arr = [-1, -2, 3, 4, 5, -1, 4, 3]
+print(max_subarray_sum(arr, 0, len(arr) - 1))
+
+
+# 12. Floyd-Warshall
+# Finds all-pairs shortest paths in a graph using dynamic programming.
+INF = float("inf")
+
+def FloydWarshall(dist):
+    n = len(dist)
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+
+    return dist
+
+dist = [
+    [0,   5,   INF, 10],
+    [INF, 0,   3,   INF],
+    [INF, INF, 0,   1],
+    [INF, INF, INF, 0]
+]
+
+result = FloydWarshall(dist)
+
+for row in result:
+    print(row)
+
+
+# 13. Rabin-Karp
+# Implements the Rabin-Karp string matching algorithm using a simple rolling sum hash.
+def RabinKarp(string, pattern):
+    n = len(string)
+    m = len(pattern)
+
+    string_hash = 0
+    pattern_hash = 0
+
+    for i in range(m):
+        string_hash += ord(string[i])
+        pattern_hash += ord(pattern[i])
+
+    for i in range(n - m + 1):
+        if string_hash == pattern_hash:
+            if string[i : i + m] == pattern:
+                print("Match found at position: ", i)
+
+        if i + m < n:
+            string_hash -= ord(string[i])
+            string_hash += ord(string[i + m])
+
+string = "ABCBBBCBCBBACBABCBABC"
+pattern = "ABC"
+
+RabinKarp(string, pattern)
+
+
+# 14. Naive String Matching
+# Finds all occurrences of a pattern in a string using a simple brute-force check.
+def naive(string, pattern):
+    n = len(string)
+    m = len(pattern)
+
+    for i in range(n - m + 1):
+        if string[i : i + m] == pattern:
+            print("Match found at position: ", i)
+
+string = "ABCBBBCBCBBACBABCBABC"
+pattern = "ABC"
+
+naive(string, pattern)
