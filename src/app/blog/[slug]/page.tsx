@@ -3,14 +3,41 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import type { ComponentProps } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import rehypeSlug from "rehype-slug";
 
 type Props = {
   params: { slug: string };
 };
 
+function calculateReadingTime(content: string): string {
+  const wordsPerMinute = 200;
+  const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+  const wordCount = text.split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} min read`;
+}
+
+type Heading = { level: number; text: string; id: string };
+
+function getHeadings(content: string): Heading[] {
+  const headingLines = content.match(/^#{2,3}\s+.+$/gm) || [];
+
+  return headingLines.map((line) => {
+    const level = line.match(/^#+/)?.[0].length || 2;
+    const text = line.replace(/^#+\s+/, "");
+
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .trim()
+      .replace(/\s+/g, "-");
+
+    return { level, text, id };
+  });
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { frontmatter } = await getPostBySlug(params.slug);
-
   return {
     title: frontmatter.title,
     description: frontmatter.summary,
@@ -31,15 +58,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const CustomLink = (props: ComponentProps<"a">) => {
   const href = props.href;
-
-  if (href && href.startsWith("/")) {
-    return <Link {...props} href={href} />;
-  }
-
-  if (href && href.startsWith("#")) {
-    return <a {...props} />;
-  }
-
+  if (href?.startsWith("/")) return <Link {...props} href={href} />;
+  if (href?.startsWith("#")) return <a {...props} />;
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
@@ -52,13 +72,13 @@ export const mdxComponents = {
   ),
   h2: (props: ComponentProps<"h2">) => (
     <h2
-      className="mt-8 mb-4 pb-2 text-3xl font-semibold tracking-tight border-b border-border"
+      className="mt-8 mb-4 pb-2 text-3xl font-semibold tracking-tight border-b border-border scroll-m-20"
       {...props}
     />
   ),
   h3: (props: ComponentProps<"h3">) => (
     <h3
-      className="mt-6 mb-3 text-2xl font-semibold tracking-tight"
+      className="mt-6 mb-3 text-2xl font-semibold tracking-tight scroll-m-20"
       {...props}
     />
   ),
@@ -74,9 +94,8 @@ export const mdxComponents = {
       {...props}
     />
   ),
-
   p: (props: ComponentProps<"p">) => (
-    <p className="leading-7 [&:not(:first-child)]:mt-6" {...props} />
+    <p className="leading-7 not-first:mt-6" {...props} />
   ),
   a: CustomLink,
   blockquote: (props: ComponentProps<"blockquote">) => (
@@ -88,7 +107,6 @@ export const mdxComponents = {
   hr: (props: ComponentProps<"hr">) => (
     <hr className="my-8 border-border" {...props} />
   ),
-
   ul: (props: ComponentProps<"ul">) => (
     <ul className="my-6 ml-6 list-disc [&>li]:mt-2" {...props} />
   ),
@@ -96,7 +114,6 @@ export const mdxComponents = {
     <ol className="my-6 ml-6 list-decimal [&>li]:mt-2" {...props} />
   ),
   li: (props: ComponentProps<"li">) => <li {...props} />,
-
   code: (props: ComponentProps<"code">) => (
     <code
       className="relative rounded-md bg-muted px-[0.4rem] py-[0.2rem] font-mono text-sm"
@@ -109,7 +126,6 @@ export const mdxComponents = {
       {...props}
     />
   ),
-
   strong: (props: ComponentProps<"strong">) => (
     <strong className="font-semibold" {...props} />
   ),
@@ -117,11 +133,9 @@ export const mdxComponents = {
   del: (props: ComponentProps<"del">) => (
     <del className="line-through" {...props} />
   ),
-
   img: (props: ComponentProps<"img">) => (
     <img className="my-6 rounded-md" {...props} />
   ),
-
   table: (props: ComponentProps<"table">) => (
     <div className="my-6 w-full overflow-y-auto">
       <table className="w-full" {...props} />
@@ -145,9 +159,7 @@ export const mdxComponents = {
 
 export async function generateStaticParams() {
   const posts = getPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function PostPage({
@@ -157,6 +169,9 @@ export default async function PostPage({
 }) {
   const { frontmatter, content } = await getPostBySlug(params.slug);
 
+  const readingTime = calculateReadingTime(content);
+  const headings = getHeadings(content);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -164,37 +179,72 @@ export default async function PostPage({
     datePublished: frontmatter.date,
     dateModified: frontmatter.date,
     author: [
-      {
-        "@type": "Person",
-        name: frontmatter.author,
-        url: "https://a2ys.dev/",
-      },
+      { "@type": "Person", name: frontmatter.author, url: "https://a2ys.dev/" },
     ],
     description: frontmatter.title,
   };
 
   return (
-    <article>
+    <article className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-4xl xl:px-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <h1 className="text-6xl font-extrabold tracking-tight">
-        {frontmatter.title}
-      </h1>
-      <p className="text-gray-500 mt-2">
-        {new Date(frontmatter.date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
+      <header className="pt-6 xl:pb-6">
+        <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+          {frontmatter.title}
+        </h1>
+        <div className="flex items-center gap-4 mt-4 text-muted-foreground text-sm">
+          <time dateTime={frontmatter.date}>
+            {new Date(frontmatter.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+          <span>•</span>
+          <span>{readingTime}</span>
+        </div>
+      </header>
 
       <hr className="my-8 border-border" />
 
-      <div>
-        <MDXRemote source={content} components={mdxComponents} />
+      {headings.length > 0 && (
+        <div className="my-8 p-6 bg-muted/50 rounded-lg border border-border">
+          <p className="font-semibold text-lg mb-4">Table of Contents</p>
+          <ul className="space-y-2">
+            {headings.map((heading) => (
+              <li
+                key={heading.id}
+                className={`text-sm ${
+                  heading.level === 3
+                    ? "pl-4 text-muted-foreground"
+                    : "text-foreground"
+                }`}
+              >
+                <a
+                  href={`#${heading.id}`}
+                  className="hover:underline underline-offset-4 decoration-muted-foreground/50 transition-all"
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="prose prose-neutral dark:prose-invert max-w-none pb-8">
+        <MDXRemote
+          source={content}
+          components={mdxComponents}
+          options={{
+            mdxOptions: {
+              rehypePlugins: [rehypeSlug],
+            },
+          }}
+        />
       </div>
     </article>
   );
