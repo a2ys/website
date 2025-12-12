@@ -58,9 +58,52 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const CustomLink = (props: ComponentProps<"a">) => {
   const href = props.href;
-  if (href?.startsWith("/")) return <Link {...props} href={href} />;
-  if (href?.startsWith("#")) return <a {...props} />;
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+
+  if (href?.startsWith("/")) {
+    return (
+      <Link
+        href={href}
+        {...props}
+        className="font-bold! underline! decoration-2! decoration-foreground! underline-offset-4 hover:decoration-muted-foreground transition-colors"
+      />
+    );
+  }
+
+  if (href?.startsWith("#")) {
+    return (
+      <a
+        {...props}
+        className="hover:underline underline-offset-4 decoration-dotted decoration-muted-foreground"
+      />
+    );
+  }
+
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+      className="inline-flex items-center gap-1 font-bold! text-muted-foreground hover:text-foreground border-b border-muted-foreground/30 hover:border-foreground transition-colors"
+    >
+      {props.children}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="mb-px"
+      >
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+        <polyline points="15 3 21 3 21 9" />
+        <line x1="10" x2="21" y1="14" y2="3" />
+      </svg>
+    </a>
+  );
 };
 
 export const mdxComponents = {
@@ -134,7 +177,7 @@ export const mdxComponents = {
     <del className="line-through" {...props} />
   ),
   img: (props: ComponentProps<"img">) => (
-    <img className="my-6 rounded-md" {...props} />
+    <img className="my-6 rounded-lg" {...props} />
   ),
   table: (props: ComponentProps<"table">) => (
     <div className="my-6 w-full overflow-y-auto">
