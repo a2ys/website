@@ -177,7 +177,10 @@ export const mdxComponents = {
     <del className="line-through" {...props} />
   ),
   img: (props: ComponentProps<"img">) => (
-    <img className="my-6 rounded-lg" {...props} />
+    <img
+      className="my-6 rounded-lg w-full border-2 border-gray-600"
+      {...props}
+    />
   ),
   table: (props: ComponentProps<"table">) => (
     <div className="my-6 w-full overflow-y-auto">
@@ -278,7 +281,7 @@ export default async function PostPage({
         </div>
       )}
 
-      <div className="prose prose-neutral dark:prose-invert max-w-none pb-8">
+      <div className="prose prose-neutral dark:prose-invert max-w-none pb-8 text-justify">
         <MDXRemote
           source={content}
           components={mdxComponents}
