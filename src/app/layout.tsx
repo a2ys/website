@@ -60,7 +60,7 @@ export default function RootLayout({
         <div className="min-h-screen bg-background text-foreground">
           <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col min-h-screen">
             <Nav />
-            <div className="flex-grow">{children}</div>
+            <div className="grow">{children}</div>
             <Footer />
           </div>
         </div>
