@@ -40,7 +40,7 @@ export default function Home() {
           <span className="text-accent">~</span> about me
         </h2>
 
-        <p className="text-foreground text-lg leading-relaxed max-w-3xl">
+        <p className="text-foreground text-lg leading-relaxed text-justify">
           a 20 y/o cs undergrad passionate about finding simple solutions to
           common problems. i love theoretical computer science, solving
           intuitive problems and exploring open source. i am programming since
