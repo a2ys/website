@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import rehypeSlug from "rehype-slug";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 function calculateReadingTime(content: string): string {
@@ -37,21 +37,22 @@ function getHeadings(content: string): Heading[] {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { frontmatter } = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const { frontmatter } = await getPostBySlug(slug);
   return {
     title: frontmatter.title,
     description: frontmatter.summary,
     openGraph: {
       title: frontmatter.title,
       description: frontmatter.summary,
-      url: `https://a2ys.dev/blog/${params.slug}`,
-      images: [`/blog/${params.slug}/opengraph-image`],
+      url: `https://a2ys.dev/blog/${slug}`,
+      images: [`/blog/${slug}/opengraph-image`],
     },
     twitter: {
       card: "summary_large_image",
       title: frontmatter.title,
       description: frontmatter.summary,
-      images: [`/blog/${params.slug}/opengraph-image`],
+      images: [`/blog/${slug}/opengraph-image`],
     },
   };
 }
@@ -129,11 +130,11 @@ export const mdxComponents = {
     <h4 className="mt-6 mb-3 text-xl font-semibold tracking-tight" {...props} />
   ),
   h5: (props: ComponentProps<"h5">) => (
-    <h5 className="mt-6 mb-3 text-base font-semibold" {...props} />
+    <h5 className="mt-6 mb-3 text-lg font-semibold" {...props} />
   ),
   h6: (props: ComponentProps<"h6">) => (
     <h6
-      className="mt-6 mb-3 text-base font-semibold text-muted-foreground"
+      className="mt-6 mb-3 text-lg font-semibold text-muted-foreground"
       {...props}
     />
   ),
@@ -211,9 +212,10 @@ export async function generateStaticParams() {
 export default async function PostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { frontmatter, content } = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const { frontmatter, content } = await getPostBySlug(slug);
 
   const readingTime = calculateReadingTime(content);
   const headings = getHeadings(content);
@@ -258,7 +260,7 @@ export default async function PostPage({
 
       {headings.length > 0 && (
         <div className="my-8 p-6 bg-muted/50 rounded-lg border border-border">
-          <p className="font-semibold text-base mb-4">Table of Contents</p>
+          <p className="font-semibold text-lg mb-4">Table of Contents</p>
           <ul className="space-y-2">
             {headings.map((heading) => (
               <li

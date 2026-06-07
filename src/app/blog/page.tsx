@@ -25,14 +25,14 @@ const page = () => {
           <ScrambleTextComponent text="blog" duration={1000} />
         </div>
 
-        <p className="text-muted-foreground mb-8 text-base">
+        <p className="text-muted-foreground mb-8 text-lg">
           i love to share my thoughts and ideas through writing. although i have
           a separate blog as a project, here i share my personal blog on various
           topics ranging from technology to life experiences.
         </p>
       </header>
 
-      <div className="space-y-4 lowercase text-base">
+      <div className="space-y-4 lowercase text-lg">
         {posts.map((post) => (
           <Link
             key={post.slug}

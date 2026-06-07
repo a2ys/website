@@ -40,7 +40,7 @@ export default function Home() {
           <span className="text-accent">~</span> about me
         </h2>
 
-        <p className="text-foreground text-base leading-relaxed max-w-3xl">
+        <p className="text-foreground text-lg leading-relaxed max-w-3xl">
           a 20 y/o cs undergrad passionate about finding simple solutions to
           common problems. i love theoretical computer science, solving
           intuitive problems and exploring open source. i am programming since
@@ -54,7 +54,7 @@ export default function Home() {
           <span className="text-accent">~</span> blog
         </h2>
 
-        <div className="space-y-4 lowercase text-base">
+        <div className="space-y-4 lowercase text-lg">
           {posts.map((post) => (
             <Link
               key={post.slug}
@@ -76,7 +76,7 @@ export default function Home() {
         <div className="mt-6">
           <Link
             href="/blog"
-            className="text-primary hover:text-accent transition-colors text-base items-center flex gap-2"
+            className="text-primary hover:text-accent transition-colors text-lg items-center flex gap-2"
           >
             <span>all posts</span>
             <ArrowUpRight className="w-4 h-4" />
