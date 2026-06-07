@@ -6,24 +6,27 @@ const postsDirectory = path.join(process.cwd(), "content/blog");
 
 export function getPosts() {
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.mdx$/, "");
+  const allPostsData = fileNames
+    .map((fileName) => {
+      const slug = fileName.replace(/\.mdx$/, "");
 
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
 
-    const matterResult = matter(fileContents);
+      const matterResult = matter(fileContents);
 
-    return {
-      slug,
-      ...(matterResult.data as {
-        title: string;
-        date: string;
-        author: string;
-        summary: string;
-      }),
-    };
-  });
+      return {
+        slug,
+        ...(matterResult.data as {
+          title: string;
+          date: string;
+          author: string;
+          summary: string;
+          draft: boolean;
+        }),
+      };
+    })
+    .filter((post) => process.env.NODE_ENV === "development" || !post.draft);
 
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
@@ -46,6 +49,7 @@ export async function getPostBySlug(slug: string) {
       date: string;
       author: string;
       summary: string;
+      draft: boolean;
     },
     content,
   };

@@ -129,7 +129,7 @@ export const mdxComponents = {
     <h4 className="mt-6 mb-3 text-xl font-semibold tracking-tight" {...props} />
   ),
   h5: (props: ComponentProps<"h5">) => (
-    <h5 className="mt-6 mb-3 text-lg font-semibold" {...props} />
+    <h5 className="mt-6 mb-3 text-base font-semibold" {...props} />
   ),
   h6: (props: ComponentProps<"h6">) => (
     <h6
@@ -258,7 +258,7 @@ export default async function PostPage({
 
       {headings.length > 0 && (
         <div className="my-8 p-6 bg-muted/50 rounded-lg border border-border">
-          <p className="font-semibold text-lg mb-4">Table of Contents</p>
+          <p className="font-semibold text-base mb-4">Table of Contents</p>
           <ul className="space-y-2">
             {headings.map((heading) => (
               <li

@@ -17,7 +17,12 @@ export default function Home() {
           </p>
           <p className="flex items-center gap-2">
             <Briefcase className="w-4 h-4" />
-            <span>building a stealth startup</span>
+            <span>
+              building{" "}
+              <a href="https://dunder.in" target="_blank">
+                dunder
+              </a>
+            </span>
           </p>
         </div>
       </header>
@@ -27,7 +32,7 @@ export default function Home() {
           <span className="text-accent">~</span> about me
         </h2>
 
-        <p className="text-foreground text-lg leading-relaxed max-w-3xl">
+        <p className="text-foreground text-base leading-relaxed max-w-3xl">
           a 20 y/o cs undergrad passionate about finding simple solutions to
           common problems. i love theoretical computer science, solving
           intuitive problems and exploring open source. i am programming since
@@ -41,7 +46,7 @@ export default function Home() {
           <span className="text-accent">~</span> blog
         </h2>
 
-        <div className="space-y-4 lowercase text-lg">
+        <div className="space-y-4 lowercase text-base">
           {posts.map((post) => (
             <Link
               key={post.slug}
@@ -63,7 +68,7 @@ export default function Home() {
         <div className="mt-6">
           <Link
             href="/blog"
-            className="text-primary hover:text-accent transition-colors text-lg items-center flex gap-2"
+            className="text-primary hover:text-accent transition-colors text-base items-center flex gap-2"
           >
             <span>all posts</span>
             <ArrowUpRight className="w-4 h-4" />

@@ -25,26 +25,28 @@ const page = () => {
           <ScrambleTextComponent text="blog" duration={1000} />
         </div>
 
-        <p className="text-muted-foreground mb-8 text-lg">
+        <p className="text-muted-foreground mb-8 text-base">
           i love to share my thoughts and ideas through writing. although i have
           a separate blog as a project, here i share my personal blog on various
           topics ranging from technology to life experiences.
         </p>
       </header>
 
-      <div className="space-y-4 lowercase text-lg">
+      <div className="space-y-4 lowercase text-base">
         {posts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`}>
-            <div className="flex justify-between items-center hover:text-primary transition-colors cursor-pointer gap-2">
-              <span>{post.title}</span>
-              <span className="text-muted-foreground">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </span>
-            </div>
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="flex justify-between items-center hover:text-primary transition-colors cursor-pointer gap-2"
+          >
+            <span>{post.title}</span>
+            <span className="text-muted-foreground">
+              {new Date(post.date).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </span>
           </Link>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import { Anonymous_Pro } from "next/font/google";
+import { Anonymous_Pro, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,6 +9,13 @@ import { Metadata } from "next";
 const anonymousPro = Anonymous_Pro({
   weight: ["400", "700"],
   subsets: ["latin"],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-ibm-plex-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -56,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${anonymousPro.className} antialiased`}>
+      <body className={`${ibmPlexMono.className} antialiased`}>
         <div className="min-h-screen bg-background text-foreground">
           <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col min-h-screen">
             <Nav />

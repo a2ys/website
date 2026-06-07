@@ -15,6 +15,13 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: "turflang",
+    description:
+      "a next-generation compiled language featuring intelligent diagnostics, powerful tooling, and native performance. source code is currently private due to legal considerations.",
+    technologies: ["c++", "llvm", "compiler", "language-design"],
+    href: "https://github.com/turf-lang",
+  },
+  {
     title: "celeris",
     description:
       "offline mobile payment system for areas with limited internet access.",
@@ -51,7 +58,7 @@ const page = () => {
           <ScrambleTextComponent text="projects" duration={1000} />
         </div>
 
-        <p className="text-muted-foreground mb-8 text-lg">
+        <p className="text-muted-foreground mb-8 text-base">
           here are some cool projects i have worked upon. most of the times, it
           was the complexity of the projects which motivated me, and other
           times, it was the opportunity to learn new technologies and
