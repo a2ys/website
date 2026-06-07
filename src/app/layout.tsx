@@ -4,7 +4,7 @@ import Nav from "@/components/Nav";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/Footer";
-import Metadata from "next";
+import { Metadata } from "next";
 
 const anonymousPro = Anonymous_Pro({
   subsets: ["latin"],
