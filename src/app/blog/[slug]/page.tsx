@@ -46,13 +46,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: frontmatter.title,
       description: frontmatter.summary,
       url: `https://a2ys.dev/blog/${slug}`,
-      images: [`/blog/${slug}/opengraph-image`],
     },
     twitter: {
       card: "summary_large_image",
       title: frontmatter.title,
       description: frontmatter.summary,
-      images: [`/blog/${slug}/opengraph-image`],
     },
   };
 }
