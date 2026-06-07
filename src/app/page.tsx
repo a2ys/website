@@ -8,23 +8,31 @@ export default function Home() {
 
   return (
     <main>
-      <header className="mb-12">
-        <ScrambleTextComponent text="aayush shukla" duration={1000} />
-        <div className="space-y-2 text-muted-foreground">
-          <p className="flex items-center gap-2">
-            <MapPin className="w-4 h-4" />
-            <span>chennai, india</span>
-          </p>
-          <p className="flex items-center gap-2">
-            <Briefcase className="w-4 h-4" />
-            <span>
-              building{" "}
-              <a href="https://dunder.in" target="_blank">
-                dunder
-              </a>
-            </span>
-          </p>
+      <header className="mb-12 flex items-start justify-between">
+        <div>
+          <ScrambleTextComponent text="aayush shukla" duration={1000} />
+          <div className="space-y-2 text-muted-foreground">
+            <p className="flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              <span>chennai, india</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <Briefcase className="w-4 h-4" />
+              <span>
+                building{" "}
+                <a href="https://dunder.in" target="_blank">
+                  dunder
+                </a>
+              </span>
+            </p>
+          </div>
         </div>
+
+        <img
+          src="https://github.com/a2ys.png"
+          alt="Aayush Shukla"
+          className="h-24 w-24 rounded-full object-cover"
+        />
       </header>
 
       <section className="mb-10">
