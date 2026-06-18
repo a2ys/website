@@ -29,7 +29,7 @@ const Nav = () => {
       <div className="flex gap-8 min-[430px]:gap-4">
         <Link
           href="/"
-          className={`hover:text-primary transition-colors ${
+          className={`hover:text-primary font-bold transition-colors ${
             pathName === "/" ? "text-primary" : "text-muted-foreground"
           }`}
         >
@@ -37,7 +37,7 @@ const Nav = () => {
         </Link>
         <Link
           href="/blog"
-          className={`hover:text-primary transition-colors ${
+          className={`hover:text-primary font-bold transition-colors ${
             pathName.startsWith("/blog")
               ? "text-primary"
               : "text-muted-foreground"
@@ -47,18 +47,18 @@ const Nav = () => {
         </Link>
         <Link
           href="/projects"
-          className={`hover:text-primary transition-colors ${
+          className={`hover:text-primary font-bold transition-colors ${
             pathName === "/projects" ? "text-primary" : "text-muted-foreground"
           }`}
         >
           <span className="hidden min-[430px]:inline">[p] </span>projects
         </Link>
-        <Link
+        {/* <Link
           href="https://blog.a2ys.dev"
-          className="hover:text-primary transition-colors text-muted-foreground"
+          className="hover:text-primary font-bold transition-colors text-muted-foreground"
         >
           <span className="hidden min-[430px]:inline">[s] </span>SAVANT
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );
