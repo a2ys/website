@@ -17,7 +17,7 @@ const projects = [
   {
     title: "turflang",
     description:
-      "a next-generation compiled language featuring intelligent diagnostics, powerful tooling, and native performance. source code is currently private due to legal considerations.",
+      "an ahead-of-time compiled language featuring intelligent diagnostics, powerful tooling, and native performance. source code is currently private due to legal considerations.",
     technologies: ["c++", "llvm", "compiler", "language-design"],
     href: "https://github.com/turf-lang",
   },

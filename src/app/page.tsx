@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <main>
-      <header className="mb-12 flex items-start justify-between">
+      <header className="mb-12 flex items-start">
         <div>
           <ScrambleTextComponent text="aayush shukla" duration={1000} />
           <div className="space-y-2 text-muted-foreground">
@@ -27,12 +27,6 @@ export default function Home() {
             </p>
           </div>
         </div>
-
-        <img
-          src="https://github.com/a2ys.png"
-          alt="Aayush Shukla"
-          className="h-24 w-24 rounded-full object-cover"
-        />
       </header>
 
       <section className="mb-10">
