@@ -107,16 +107,25 @@ const CustomLink = (props: ComponentProps<"a">) => {
 
 export const mdxComponents = {
   h1: (props: ComponentProps<"h1">) => (
-    <h1 className="mt-8 mb-4 text-4xl font-extrabold" {...props} />
+    <h1 className="mt-8 mb-4 text-4xl font-extrabold" {...props}>
+      <span className="text-accent mr-2">~</span>
+      {props.children}
+    </h1>
   ),
   h2: (props: ComponentProps<"h2">) => (
     <h2
       className="mt-8 mb-4 pb-2 text-3xl font-semibold border-b border-border scroll-m-20"
       {...props}
-    />
+    >
+      <span className="text-accent mr-2">~</span>
+      {props.children}
+    </h2>
   ),
   h3: (props: ComponentProps<"h3">) => (
-    <h3 className="mt-6 mb-3 text-2xl font-semibold scroll-m-20" {...props} />
+    <h3 className="mt-6 mb-3 text-2xl font-semibold scroll-m-20" {...props}>
+      <span className="text-accent mr-2">~</span>
+      {props.children}
+    </h3>
   ),
   h4: (props: ComponentProps<"h4">) => (
     <h4 className="mt-6 mb-3 text-xl font-semibold" {...props} />
