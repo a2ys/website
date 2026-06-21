@@ -105,12 +105,10 @@
   h6 {
     font-family: var(--font-heading);
   }
-}
 
-.font-heading {
-  font-family: var(--font-heading);
+  span,
+  code,
+  pre {
+    font-family: var(--font-body) !important;
+  }
 }
-
-/* body {
-  font-family: var(--font-body);
-} */

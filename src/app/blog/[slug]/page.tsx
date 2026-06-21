@@ -108,34 +108,31 @@ const CustomLink = (props: ComponentProps<"a">) => {
 export const mdxComponents = {
   h1: (props: ComponentProps<"h1">) => (
     <h1
-      className="mt-8 mb-4 text-4xl font-extrabold tracking-tight font-heading"
+      className="mt-8 mb-4 text-4xl font-extrabold tracking-tight"
       {...props}
     />
   ),
   h2: (props: ComponentProps<"h2">) => (
     <h2
-      className="mt-8 mb-4 pb-2 text-3xl font-semibold tracking-tight font-heading border-b border-border scroll-m-20"
+      className="mt-8 mb-4 pb-2 text-3xl font-semibold tracking-tight border-b border-border scroll-m-20"
       {...props}
     />
   ),
   h3: (props: ComponentProps<"h3">) => (
     <h3
-      className="mt-6 mb-3 text-2xl font-semibold tracking-tight font-heading scroll-m-20"
+      className="mt-6 mb-3 text-2xl font-semibold tracking-tight scroll-m-20"
       {...props}
     />
   ),
   h4: (props: ComponentProps<"h4">) => (
-    <h4
-      className="mt-6 mb-3 text-xl font-semibold tracking-tight font-heading"
-      {...props}
-    />
+    <h4 className="mt-6 mb-3 text-xl font-semibold tracking-tight" {...props} />
   ),
   h5: (props: ComponentProps<"h5">) => (
-    <h5 className="mt-6 mb-3 text-lg font-semibold font-heading" {...props} />
+    <h5 className="mt-6 mb-3 text-lg font-semibold" {...props} />
   ),
   h6: (props: ComponentProps<"h6">) => (
     <h6
-      className="mt-6 mb-3 text-lg font-semibold text-muted-foreground font-heading"
+      className="mt-6 mb-3 text-lg font-semibold text-muted-foreground"
       {...props}
     />
   ),
@@ -161,7 +158,7 @@ export const mdxComponents = {
   li: (props: ComponentProps<"li">) => <li {...props} />,
   code: (props: ComponentProps<"code">) => (
     <code
-      className="relative rounded-md bg-muted px-[0.4rem] py-[0.2rem] font-mono text-sm"
+      className="relative rounded-md bg-muted px-[0.4rem] py-[0.2rem] text-sm"
       {...props}
     />
   ),
@@ -241,7 +238,7 @@ export default async function PostPage({
       />
 
       <header className="pt-6 xl:pb-6">
-        <h1 className="text-4xl font-extrabold tracking-tight font-heading text-foreground sm:text-5xl md:text-6xl">
+        <h1 className="text-4xl font-extrabold tracking-tight   text-foreground sm:text-5xl md:text-6xl">
           {frontmatter.title}
         </h1>
         <div className="flex items-center gap-4 mt-4 text-muted-foreground text-sm">
@@ -284,7 +281,7 @@ export default async function PostPage({
         </div>
       )}
 
-      <div className="prose prose-neutral dark:prose-invert max-w-none pb-8 text-justify">
+      <div className="prose prose-neutral dark:prose-invert max-w-none pb-8 text-justify text-lg">
         <MDXRemote
           source={content}
           components={mdxComponents}
