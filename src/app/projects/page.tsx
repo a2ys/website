@@ -58,7 +58,7 @@ const page = () => {
           <ScrambleTextComponent text="projects" duration={1000} />
         </div>
 
-        <p className="text-muted-foreground mb-8 text-lg">
+        <p className="text-muted-foreground mb-8 text-lg text-justify">
           here are some cool projects i have worked upon. most of the times, it
           was the complexity of the projects which motivated me, and other
           times, it was the opportunity to learn new technologies and

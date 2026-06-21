@@ -107,25 +107,19 @@ const CustomLink = (props: ComponentProps<"a">) => {
 
 export const mdxComponents = {
   h1: (props: ComponentProps<"h1">) => (
-    <h1
-      className="mt-8 mb-4 text-4xl font-extrabold tracking-tight"
-      {...props}
-    />
+    <h1 className="mt-8 mb-4 text-4xl font-extrabold" {...props} />
   ),
   h2: (props: ComponentProps<"h2">) => (
     <h2
-      className="mt-8 mb-4 pb-2 text-3xl font-semibold tracking-tight border-b border-border scroll-m-20"
+      className="mt-8 mb-4 pb-2 text-3xl font-semibold border-b border-border scroll-m-20"
       {...props}
     />
   ),
   h3: (props: ComponentProps<"h3">) => (
-    <h3
-      className="mt-6 mb-3 text-2xl font-semibold tracking-tight scroll-m-20"
-      {...props}
-    />
+    <h3 className="mt-6 mb-3 text-2xl font-semibold scroll-m-20" {...props} />
   ),
   h4: (props: ComponentProps<"h4">) => (
-    <h4 className="mt-6 mb-3 text-xl font-semibold tracking-tight" {...props} />
+    <h4 className="mt-6 mb-3 text-xl font-semibold" {...props} />
   ),
   h5: (props: ComponentProps<"h5">) => (
     <h5 className="mt-6 mb-3 text-lg font-semibold" {...props} />
@@ -238,10 +232,10 @@ export default async function PostPage({
       />
 
       <header className="pt-6 xl:pb-6">
-        <h1 className="text-4xl font-extrabold tracking-tight   text-foreground sm:text-5xl md:text-6xl">
+        <h1 className="text-4xl font-extrabold text-foreground sm:text-5xl md:text-6xl">
           {frontmatter.title}
         </h1>
-        <div className="flex items-center gap-4 mt-4 text-muted-foreground text-sm">
+        <div className="flex items-center gap-4 mt-4 text-muted-foreground text-base">
           <time dateTime={frontmatter.date}>
             {new Date(frontmatter.date).toLocaleDateString("en-US", {
               year: "numeric",
@@ -258,14 +252,14 @@ export default async function PostPage({
 
       {headings.length > 0 && (
         <div className="my-8 p-6 bg-muted/50 rounded-lg border border-border">
-          <p className="font-semibold text-lg mb-4">Table of Contents</p>
+          <h3 className="font-semibold text-lg mb-4">Table of Contents</h3>
           <ul className="space-y-2">
             {headings.map((heading) => (
               <li
                 key={heading.id}
                 className={`text-sm ${
                   heading.level === 3
-                    ? "pl-4 text-muted-foreground"
+                    ? "pl-6 text-muted-foreground"
                     : "text-foreground"
                 }`}
               >
@@ -281,7 +275,7 @@ export default async function PostPage({
         </div>
       )}
 
-      <div className="prose prose-neutral dark:prose-invert max-w-none pb-8 text-justify text-lg">
+      <div className="prose prose-neutral dark:prose-invert max-w-none pb-8 text-justify text-base">
         <MDXRemote
           source={content}
           components={mdxComponents}

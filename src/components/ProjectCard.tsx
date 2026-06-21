@@ -1,5 +1,5 @@
+import { ArrowUpRight } from "iconoir-react/regular";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 
 type ProjectCardProps = {
   title: string;
@@ -21,15 +21,16 @@ export function ProjectCard({
           <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">
             {title}
           </h2>
+          {/* <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-accent transition-colors" /> */}
           <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-accent transition-colors" />
         </div>
-        <p className="text-gray-300 mb-6">{description}</p>
+        <p className="text-gray-300 mb-6 mr-8 text-justify">{description}</p>
         <div>
           <div className="flex flex-wrap gap-2">
             {technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-1 text-sm text-gray-300 bg-gray-800/50 rounded"
+                className="px-2 py-1 text-sm text-gray-300 bg-gray-800/50 rounded-xs"
               >
                 {tech.toLowerCase()}
               </span>

@@ -5,15 +5,16 @@
 
 :root {
   --background: oklch(0.1448 0 0);
-  --foreground: oklch(0.87 0.015 255);
+  --foreground: oklch(0.91 0.01 255);
 
   --card: oklch(0.2 0.02 260);
   --card-foreground: var(--foreground);
+
   --popover: oklch(0.2 0.02 260);
   --popover-foreground: var(--foreground);
 
-  --primary: oklch(0.76 0.17 248);
-  --primary-foreground: oklch(0.15 0.02 260);
+  --primary: oklch(0.7 0.18 250);
+  --accent: oklch(0.62 0.08 230);
 
   --secondary: oklch(0.28 0.02 260);
   --secondary-foreground: var(--foreground);

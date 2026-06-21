@@ -25,7 +25,7 @@ const page = () => {
           <ScrambleTextComponent text="blog" duration={1000} />
         </div>
 
-        <p className="text-muted-foreground mb-8 text-lg">
+        <p className="text-muted-foreground mb-8 text-lg text-justify">
           i love to share my thoughts and ideas through writing. although i have
           a separate blog as a project, here i share my personal blog on various
           topics ranging from technology to life experiences.

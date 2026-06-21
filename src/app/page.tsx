@@ -1,10 +1,11 @@
 import ScrambleTextComponent from "@/components/ScrambleTextComponent";
 import { getPosts } from "@/lib/posts";
-import { ArrowUpRight, Briefcase, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, Suitcase } from "iconoir-react/regular";
 import Link from "next/link";
 
 export default function Home() {
-  const posts = getPosts().slice(0, 4);
+  const allPosts = getPosts();
+  const posts = allPosts.slice(0, 3);
 
   return (
     <main>
@@ -17,7 +18,7 @@ export default function Home() {
               <span>chennai, india</span>
             </p>
             <p className="flex items-center gap-2">
-              <Briefcase className="w-4 h-4" />
+              <Suitcase className="w-4 h-4" />
               <span>
                 building{" "}
                 <a href="https://dunder.in" target="_blank">
@@ -35,7 +36,7 @@ export default function Home() {
         </h2>
 
         <p className="text-foreground text-lg leading-relaxed text-justify">
-          a 20 y/o cs undergrad passionate about finding simple solutions to
+          a 21 y/o cs undergrad passionate about finding simple solutions to
           common problems. i love theoretical computer science, solving
           intuitive problems and exploring open source. i am programming since
           the age of 11 and this habit will not go any soon. i mostly share my
@@ -67,15 +68,17 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-6">
-          <Link
-            href="/blog"
-            className="text-primary hover:text-accent transition-colors text-lg items-center flex gap-2"
-          >
-            <span>all posts</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
-        </div>
+        {allPosts.length > 3 && (
+          <div className="mt-6">
+            <Link
+              href="/blog"
+              className="text-primary hover:text-accent transition-colors text-lg items-center flex gap-2"
+            >
+              <span>all posts</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </section>
 
       <section className="mb-10">
