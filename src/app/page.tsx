@@ -30,7 +30,7 @@ export default function Home() {
       </header>
 
       <section className="mb-10">
-        <h2 className="text-2xl font-bold mb-6">
+        <h2 className="font-heading text-2xl font-bold mb-6">
           <span className="text-accent">~</span> about me
         </h2>
 
@@ -44,7 +44,7 @@ export default function Home() {
       </section>
 
       <section className="mb-10">
-        <h2 className="text-2xl font-bold mb-6">
+        <h2 className="font-heading text-2xl font-bold mb-6">
           <span className="text-accent">~</span> blog
         </h2>
 
@@ -79,7 +79,7 @@ export default function Home() {
       </section>
 
       <section className="mb-10">
-        <h2 className="text-2xl font-bold mb-6">
+        <h2 className="font-heading text-2xl font-bold mb-6">
           <span className="text-accent">~</span> education
         </h2>
 

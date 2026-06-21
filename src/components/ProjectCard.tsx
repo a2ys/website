@@ -18,7 +18,7 @@ export function ProjectCard({
     <div className="group border border-gray-800 p-6 transition-colors hover:border-accent/50">
       <Link href={href} target="_blank">
         <div className="flex justify-between items-start mb-4">
-          <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">
+          <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors font-heading">
             {title}
           </h2>
           <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-accent transition-colors" />

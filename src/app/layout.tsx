@@ -1,14 +1,28 @@
-import { Anonymous_Pro } from "next/font/google";
+import { Anonymous_Pro, Xanh_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
+import localFont from "next/font/local";
+
+const xanhMono = Xanh_Mono({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  variable: "--font-heading",
+});
 
 const anonymousPro = Anonymous_Pro({
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
+});
+
+const dataType = localFont({
+  src: "./fonts/DataType-VF.ttf",
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -57,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${anonymousPro.className} antialiased`}>
+      <body className={`${xanhMono.variable} ${dataType.variable} antialiased`}>
         <div className="min-h-screen bg-background text-foreground">
           <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col min-h-screen">
             <Nav />
