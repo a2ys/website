@@ -15,8 +15,8 @@ export function ProjectCard({
   href,
 }: ProjectCardProps) {
   return (
-    <div className="group border border-gray-800 p-6 transition-colors hover:border-accent/50">
-      <Link href={href} target="_blank">
+    <div className="group border border-gray-800 p-6 flex flex-col h-full transition-colors hover:border-accent/50">
+      <Link href={href} target="_blank" className="flex flex-col h-full">
         <div className="flex justify-between items-start mb-4">
           <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">
             {title}
@@ -24,8 +24,8 @@ export function ProjectCard({
           {/* <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-accent transition-colors" /> */}
           <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-accent transition-colors" />
         </div>
-        <p className="text-gray-300 mb-6 mr-8 text-justify">{description}</p>
-        <div>
+        <p className="text-gray-300 leading-relaxed flex-1">{description}</p>
+        <div className="mt-6">
           <div className="flex flex-wrap gap-2">
             {technologies.map((tech) => (
               <span
