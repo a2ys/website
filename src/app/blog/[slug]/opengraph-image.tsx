@@ -10,6 +10,16 @@ export const size = {
 };
 export const contentType = "image/png";
 
+const colors = {
+  background: "#111318",
+  foreground: "#e5e9f0",
+  primary: "#6f8fff",
+  accent: "#6f88c7",
+  muted: "#1b1f27",
+  mutedForeground: "#a7afc2",
+  border: "#2b303a",
+};
+
 export default async function Image({
   params,
 }: {
@@ -38,7 +48,7 @@ export default async function Image({
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#0b0f1a",
+        backgroundColor: colors.background,
         fontFamily: "'Datatype'",
         position: "relative",
         overflow: "hidden",
@@ -51,7 +61,7 @@ export default async function Image({
           left: 0,
           right: 0,
           height: "4px",
-          backgroundColor: "#3a89c8",
+          backgroundColor: colors.primary,
         }}
       />
 
@@ -77,8 +87,8 @@ export default async function Image({
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              backgroundColor: "rgba(58,137,200,0.15)",
-              border: "1px solid rgba(58,137,200,0.4)",
+              backgroundColor: "rgba(111,143,255,0.12)",
+              border: "1px solid rgba(111,143,255,0.25)",
               borderRadius: "6px",
               padding: "6px 14px",
             }}
@@ -88,13 +98,13 @@ export default async function Image({
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                backgroundColor: "#60a5fa",
+                backgroundColor: colors.primary,
               }}
             />
             <span
               style={{
                 fontSize: "18px",
-                color: "#60a5fa",
+                color: colors.primary,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
               }}
@@ -122,7 +132,7 @@ export default async function Image({
                     ? "60px"
                     : "68px",
               fontWeight: "bold",
-              color: "#f0f4ff",
+              color: colors.foreground,
               lineHeight: "1.15",
               margin: 0,
               maxWidth: "900px",
@@ -136,7 +146,7 @@ export default async function Image({
             <p
               style={{
                 fontSize: "24px",
-                color: "#8fa8c8",
+                color: colors.mutedForeground,
                 lineHeight: "1.5",
                 margin: 0,
                 maxWidth: "820px",
@@ -163,7 +173,7 @@ export default async function Image({
               style={{
                 fontSize: "22px",
                 fontWeight: "bold",
-                color: "#c8d8f0",
+                color: colors.foreground,
                 fontFamily: "'Xanh Mono'",
               }}
             >
@@ -172,7 +182,7 @@ export default async function Image({
             <span
               style={{
                 fontSize: "18px",
-                color: "#4a7090",
+                color: colors.mutedForeground,
               }}
             >
               {formattedDate}
@@ -184,7 +194,7 @@ export default async function Image({
               display: "flex",
               alignItems: "center",
               gap: "10px",
-              borderTop: "1px solid rgba(58,137,200,0.25)",
+              borderTop: `1px solid ${colors.border}`,
               paddingTop: "10px",
             }}
           >
@@ -192,7 +202,7 @@ export default async function Image({
               style={{
                 fontSize: "26px",
                 fontWeight: "bold",
-                color: "#3a89c8",
+                color: colors.primary,
                 letterSpacing: "0.02em",
               }}
             >
@@ -209,7 +219,7 @@ export default async function Image({
           top: "15%",
           bottom: "15%",
           width: "2px",
-          backgroundColor: "rgba(58,137,200,0.35)",
+          backgroundColor: "rgba(111,143,255,0.18)",
         }}
       />
     </div>,
