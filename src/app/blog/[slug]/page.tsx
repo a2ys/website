@@ -244,7 +244,7 @@ export default async function PostPage({
         <h1 className="text-4xl font-extrabold text-foreground sm:text-5xl md:text-6xl">
           {frontmatter.title}
         </h1>
-        <div className="flex items-center gap-4 mt-4 text-muted-foreground text-base">
+        <div className="flex items-center gap-2 mt-4 sm:mt-6 text-muted-foreground text-base">
           <time dateTime={frontmatter.date}>
             {new Date(frontmatter.date).toLocaleDateString("en-US", {
               year: "numeric",
