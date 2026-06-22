@@ -1,7 +1,6 @@
 import { ProjectCard } from "@/components/ProjectCard";
 import ScrambleTextComponent from "@/components/ScrambleTextComponent";
 import { Metadata } from "next";
-import React from "react";
 
 export const metadata: Metadata = {
   title: "Projects | Aayush Shukla",
@@ -15,6 +14,19 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: "meshsync",
+    description:
+      "android-first offline synchronization framework. persistent queues, automatic retries, conflict resolution, and peer-to-peer sync for reliable offline-first apps.",
+    technologies: [
+      "kotlin",
+      "android",
+      "room",
+      "workmanager",
+      "kotlinx-serialization",
+    ],
+    href: "https://github.com/a2ys/meshsync",
+  },
+  {
     title: "turflang",
     description:
       "an ahead-of-time compiled language featuring intelligent diagnostics, powerful tooling, and native performance. source code is currently private due to legal considerations.",
@@ -24,26 +36,28 @@ const projects = [
   {
     title: "celeris",
     description:
-      "offline mobile payment system for areas with limited internet access.",
+      "offline-first mobile payment system. transactions are queued locally and settled when connectivity resumes, designed for areas where internet access is unreliable or intermittent.",
     technologies: ["kotlin", "fastapi", "java", "supabase"],
     href: "https://github.com/celeris-schnell",
   },
   {
     title: "bitboard chess engine and supervised ai",
-    description: "chess engine using bitboards for efficient move generation.",
+    description:
+      "chess engine using bitboards for compact, fast move generation. paired with a classical ai using negamax and a hand-crafted evaluation function to search and score positions.",
     technologies: ["java", "maven", "junit", "swing"],
     href: "https://github.com/a2ys/java-engine",
   },
   {
     title: "savant",
-    description: "a community blog written in astro, still in development.",
+    description:
+      "community blog platform built on astro. markdown-powered, fast by default, and designed for developer writing. still actively being shaped.",
     technologies: ["astro", "react", "tailwindcss", "remark"],
     href: "https://blog.a2ys.dev",
   },
   {
     title: "conversa",
     description:
-      "a chat application developed in kotlin and firebase for android. development is currently paused.",
+      "real-time android chat app backed by firebase. handles messaging, live sync, and auth. development is currently paused.",
     technologies: ["kotlin", "java", "firebase", "android"],
     href: "https://github.com/a2ys/conversa",
   },
